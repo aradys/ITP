@@ -1,4 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+#centrowana {margin:10px auto; width:700px; height:500px; background-color:#FFFFFF;}
+
 #cssmenu,
 #cssmenu ul,
 #cssmenu ul li,
@@ -67,7 +70,7 @@
 }
 #cssmenu > ul > li > a {
   padding: 20px;
-  font-size: 12px;
+  font-size: 16px;
   text-decoration: none;
   text-transform: uppercase;
   color: #000000;
@@ -310,10 +313,10 @@
 
 #logoITP {
   float:left;
-  width:40%;
+  width:70%;
 }
 
 #logoBEST {
-  float:left;
-  width:30%;
+  float:right;
+  width: 30%;
 }
