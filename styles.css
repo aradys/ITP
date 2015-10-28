@@ -2,7 +2,7 @@
 
 #centrowana {
   margin:10px auto;
-  width:700px;
+  width:900px;
   height:500px;
   background-color:#FFFFFF;
 }
@@ -50,7 +50,7 @@ body {
   top: 0;
   left: 0;
   height: 3px;
-  background: #FFA616;
+  background: #F59424;
   -webkit-transition: all 0.25s ease-out;
   -moz-transition: all 0.25s ease-out;
   -ms-transition: all 0.25s ease-out;
@@ -91,7 +91,7 @@ body {
 }
 #cssmenu > ul > li:hover > a,
 #cssmenu > ul > li.active > a {
-  color: #FFA616;
+  color: #F59424;
 }
 #cssmenu > ul > li.has-sub > a {
   padding-right: 25px;
@@ -117,7 +117,7 @@ body {
   transition: border-color 0.2s ease;
 }
 #cssmenu > ul > li.has-sub:hover > a::after {
-  border-color: #FFA616;
+  border-color: #F59424;
 }
 #cssmenu ul ul {
   position: absolute;
@@ -320,14 +320,9 @@ body {
   }
 }
 
-#logoITP {
-  float:left;
-  width:70%;
-}
-
-#logoBEST {
-  float:right;
-  width: 30%;
+h2{
+  background-color: #F59424;
+  text-align: center;
 }
 
 #lewo {
@@ -370,20 +365,20 @@ body {
   left: 0;
 }
 
-#photo li.grupowe {
-  background-image: url("img/besciaki.jpg");
+#photo li.kombo {
+  background-image: url("img/kombo.png");
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 100%;
   height: 200px;
 }
 
-#photo li.trojkat {
-  background-image: url("img/trojkat.png");
+#photo li.grupowe {
+  background-image: url("img/besciaki.jpg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 100%;
-  height: 200px;
+  height: 300px;
 }
 
 #photo li.itp {
@@ -391,7 +386,7 @@ body {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   width: 100%;
-  height: 200px;
+  height: 300px;
 }
 
 #photo li.kontakt1 {
@@ -408,5 +403,6 @@ body {
   background-position: 50% 50%;
   width: 150px;
   height: 150px;
+  margin-top: 20px;
   margin-left: 20px;
 }
