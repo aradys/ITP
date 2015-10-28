@@ -393,16 +393,16 @@ h2{
   background-image: url("img/hania.jpg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
 }
 
 #photo li.kontakt2 {
   background-image: url("img/karolina.jpg");
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   margin-top: 20px;
   margin-left: 20px;
 }
