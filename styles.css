@@ -1,6 +1,15 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
-#centrowana {margin:10px auto; width:700px; height:500px; background-color:#FFFFFF;}
+#centrowana {
+  margin:10px auto;
+  width:700px;
+  height:500px;
+  background-color:#FFFFFF;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
 
 #cssmenu,
 #cssmenu ul,
@@ -70,7 +79,7 @@
 }
 #cssmenu > ul > li > a {
   padding: 20px;
-  font-size: 16px;
+  font-size: 14px;
   text-decoration: none;
   text-transform: uppercase;
   color: #000000;
@@ -319,4 +328,85 @@
 #logoBEST {
   float:right;
   width: 30%;
+}
+
+#lewo {
+  float:left;
+  width: 25%;
+}
+
+#lewo_duze {
+  float:left;
+  width: 75%;
+}
+
+#prawo {
+  float:right;
+  width: 25%;
+}
+
+#prawo_duze {
+  float:right;
+  text-align: right;
+  width: 75%;
+}
+
+#photo {
+  list-style-type: none;
+}
+
+#photo li {
+  position: relative;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+#photo li .overlay {
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+#photo li.grupowe {
+  background-image: url("img/besciaki.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 100%;
+  height: 200px;
+}
+
+#photo li.trojkat {
+  background-image: url("img/trojkat.png");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 100%;
+  height: 200px;
+}
+
+#photo li.itp {
+  background-image: url("img/itp-foto.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 100%;
+  height: 200px;
+}
+
+#photo li.kontakt1 {
+  background-image: url("img/hania.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 150px;
+  height: 150px;
+}
+
+#photo li.kontakt2 {
+  background-image: url("img/karolina.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  width: 150px;
+  height: 150px;
+  margin-left: 20px;
 }
