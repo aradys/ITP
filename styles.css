@@ -791,8 +791,17 @@ a:focus {
 }
 
 
-
-
+.button1{
+	font-family: 'Open Sans', sans-serif; 
+	position:relative; 
+	color: #F59424; 
+	top: 19px;
+	text-decoration: none; 
+	border:none; 
+	background-color: #FFFFFF; 
+	font-size: 14px;
+	padding: 8px;
+}
 /* need a stop ! */
 
 /* actions when target ! */
