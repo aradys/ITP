@@ -13,34 +13,42 @@
 </div>
 <br><br>
 <form method='POST' action ='controller.php'>
-<input type='hidden' action='doregistration'>
+<input type='hidden' name='action' value='firm_registry'>
 <table>
 <tr><td>
 Nazwa firmy:<br>
-<input type="text"  style="width: 400px; height: 50px" name="firm_name">
-</td><tr>
+<input type="text"  style="width: 400px; height: 50px" name="name">
+</td></tr>
 <tr><td>
 Logo:<br>
 <input type="file"  name="logo" accept="image/jpg,image/png" />
-</td><tr>
+</td></tr>
 <tr><td>
 Opis:<br>
-<input type="text" style="width: 400px; height: 200px;" name="firm_descr">
-</td><tr>
+<input type="text" style="width: 400px; height: 200px;" name="description">
+</td></tr>
 <tr><td>
 Kogo poszukujemy:<br>
-<input type="text" style="width: 400px; height: 100px;" name="firm_wanted" >
-</td><tr>
+<input type="text" style="width: 400px; height: 100px;" name="wanted" >
+</td></tr>
 <tr><td>
 Osoba do kontaktu:<br>
-<input type="text" style="width: 400px;" name="firm_contact" >
-</td><tr>
+<input type="text" style="width: 400px;" name="contact" >
+</td></tr>
 <tr><td>
 Email:<br>
-<input type="text" style="width: 400px;" name="firm_email" >
-</td><tr>
+<input type="text" style="width: 400px;" name="email" >
+</td></tr>
+<tr><td>
+Hasło:<br>
+<input type="password" name="password">
+</td></tr>
+<tr><td>
+Powtórz hasło:<br>
+<input type="password" name="RepeatPassword" >
+</td></tr>
 <tr><td>
 <a href="#" class= "button1" style="font-size: 16px;">Zatwierdź</a >
-</td><tr>
-<tr><td><br><br><br></td><tr>
+</td></tr>
+<tr><td><br><br><br></td></tr>
 </form>
