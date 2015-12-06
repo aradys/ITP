@@ -1,19 +1,21 @@
-<?
-include("DataBase.php"); 
-include("User.php"); 
+<?php
 
-Class controller {
+Class DataBase{
+	
+	define("HOSTNAME","ttsi_db");
+    define("DATABASE_NAME","ttsi_db");
+	define("PORT","ttsi_db");
+	define("USER_NAME","ttsi_db");
+	define("PASSWORD","ttsi_db");
 	
 	private $pdo;
-	private $action = $_POST['action'];
-	// narazie tu zostawiam 
+	private $stmt;
 	
-
-	public function __construct($hostname,$dbname, $port ,$username,$password){
-	// tu się łącze z bazą danych
+	public function __construct(){		
+		
 		try
 		{
-			$pdo = new PDO('mysql:host='.$hostname.';dbname='.$dbname.';port='.$port ,$username, $password );
+			$pdo = new PDO('mysql:host='.HOSTNAME.';dbname='.DATABASE_NAME.';port='.PORT , USER_NAME, PASSWORD);
 			echo 'Połączenie nawiązane!';
 		}
 		catch(PDOException $e)
@@ -22,70 +24,23 @@ Class controller {
 		}
 	}
 	
-
-	if($_SERVER['REQUEST_METHOD'] == 'POST'){ //czy formularz został wysłany	
-		
-		$action = $_POST['action'];
+	public function accountExists ($email){
+		   $stmt = $pdo->query('SELECT count(*) FROM users where email='.$email);
 			
-			if (action == 'dologin'){
-				$email = $_POST['email'];
-				$password = $_POST['password'];
-				
-				$user = new User($email,$password);
-				$dataBase = new DataBase($pdo);
-
-				if($user->validate())	{
-					
-				// zapisuje w sesji nazwe uzytkownika i flage zalogowania
-					$_SESSION['email'] = $email;
-					$_SESSION['flag'] = 'logged';
-					
-					header("Location: indeks.php"); // przekierowanie na index.php
-				
-				}
-				else{
-					$_SESSION['message'] = 'niepoprawne dane logowania';
-								header("Location: indeks.php");
-				}
+			if ($stmt > 0 ){
+				return true;
 			}
-			else if (action == 'registry'){
-				$email = $_POST['email'];
-				$password = $_POST['password'];
-				$RepeatPassword = $_POST['passwordRepeat'];
-				
-				$user = new User($email,$password);
-				$dataBase = new DataBase($pdo);
-				
-					if ($password != $RepeatPassword){
-						$_SESSION['message'] = 'hasła sie nie zgadzają';
-						header("Location: indeks.php");
-					}
-					else {
-							if (!$user->validate()){
-								// trzeba dodac w klasie user przygotowanie odpowiedniej wiadomosci
-								$_SESSION['message'] = 'niepoprawne dane rejestracji';
-								header("Location: indeks.php");
-							}
-							else{
-								try {
-									if (!$DataBase->accountExists($email)){
-										$DataBase->createAccount($email);   
-										header("Location: indeks.php"); // strona wczytana po poprawnej rejestracji
-									}
-									else {
-										$_SESSION['message'] = 'konto nie istnieje';
-										header("Location: indeks.php");// strona wczytana po nieudanej rejestracji
-									}
-								}
-								catch(PDOException $e){
-								$_SESSION['message'] ="rejestracja nie powiodła się";
-								header("Location: indeks.php");// strona wczytana po nieudanej rejestracji
-								}								
-							}
-					}
-			}
+			else {
+				return false;
+			}		
+	}
 	
+	public function login($email, $password){
+		  $stmt = $pdo->query('SELECT count(*) FROM users where email='.$email.' AND '. $password);
+	}
+	
+	public function createAccount($email, $password){
+		 $temp = $pdo->exec('INSERT INTO `users` ( `email`, `password`)	VALUES($email,$password);
 	}
 }
-
 ?>
