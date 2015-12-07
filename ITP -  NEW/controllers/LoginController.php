@@ -77,11 +77,10 @@ Class LoginController {
 			}
 			///
 				else if ($action == 'firm_registry'){ //
-				$name = $_POST['name'];
-				$logo= $_POST['logo'];
-				$description= $_POST['description'];
-				$wanted= $_POST['wanted'];
-				$contact= $_POST['contact'];
+				$nazwa = $_POST['name'];
+				$opis= $_POST['description'];
+				$kandydaci= $_POST['wanted'];
+				$kontakt= $_POST['contact'];
 				$email = $_POST['email'];
 				$password = $_POST['password'];
 				$RepeatPassword = $_POST['passwordRepeat'];
@@ -101,8 +100,8 @@ Class LoginController {
 							}
 							else{
 								try {
-									if (!$DataBase->accountExists($email)){
-										$DataBase->createAccount($email);   
+									if (!$DataBase->accountExistsF($email)){
+										$DataBase->createAccountF($nazwa, $opis, $kandydaci, $kontakt, $email, $password);   
 										header("Location: index.php"); // strona wczytana po poprawnej rejestracji
 									}
 									else {

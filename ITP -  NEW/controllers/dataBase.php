@@ -71,12 +71,12 @@ Class DataBase{
 		  $stmt = $this -> pdo->query('SELECT count(*) FROM firmy where email='.$email.' AND '. $password);
 	}
 	
-	public function createAccountF($nazwa, $opis, $kandydaci, $kontakt, $email, $password, ){
+	public function createAccountF($nazwa, $opis, $kandydaci, $kontakt, $email, $password ){
 		
 			// $this ->pdo->beginTransaction();
 			 $sql = "INSERT INTO firmy (nazwa,opis,kandydaci,kontakt,email,password) VALUES(?,?,?,?,?,?)";
 		     $stmt = $this ->pdo-> prepare($sql);
-			 $stmt->execute(array(,$nazwa, $opis, $kandydaci, $kontakt, $email,$password));			 
+			 $stmt->execute(array($nazwa, $opis, $kandydaci, $kontakt, $email,$password));			 
 			//$this ->pdo->commit();
 	}
 }
