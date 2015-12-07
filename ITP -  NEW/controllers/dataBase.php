@@ -47,9 +47,10 @@ Class DataBase{
 	public function createAccount($email, $password){
 		
 			// $this ->pdo->beginTransaction();
+			$szyfr=md5("password");
 			 $sql = "INSERT INTO users (email,password) VALUES(?,?)";
 		     $stmt = $this ->pdo-> prepare($sql);
-			 $stmt->execute(array($email,$password));			 
+			 $stmt->execute(array($email,$szyfr));			 
 			//$this ->pdo->commit();
 	}
 	// firmy
@@ -74,9 +75,10 @@ Class DataBase{
 	public function createAccountF($nazwa, $opis, $kandydaci, $kontakt, $email, $password ){
 		
 			// $this ->pdo->beginTransaction();
+			$szyfr=md5("password");
 			 $sql = "INSERT INTO firmy (nazwa,opis,kandydaci,kontakt,email,password) VALUES(?,?,?,?,?,?)";
 		     $stmt = $this ->pdo-> prepare($sql);
-			 $stmt->execute(array($nazwa, $opis, $kandydaci, $kontakt, $email,$password));			 
+			 $stmt->execute(array($nazwa, $opis, $kandydaci, $kontakt, $email,$szyfr));			 
 			//$this ->pdo->commit();
 	}
 }
