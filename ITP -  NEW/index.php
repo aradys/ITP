@@ -17,9 +17,29 @@ switch($page){
 	$wyglad->glowna();
   break;
   
+  case 'stopka':
+	$wyglad->naglowek();						
+	$wyglad->stopka();
+  break;
+  
   case 'galeria':
 	 $wyglad->naglowek();	
 	 $wyglad->galeria();
+  break;
+  
+  case 'itp':
+	$wyglad->naglowek();						
+	$wyglad->itp();
+  break;
+  
+  case 'kontakt':
+	 $wyglad->naglowek();	
+	 $wyglad->kontakt();
+  break;
+  
+  case 'best':
+	 $wyglad->naglowek();	
+	 $wyglad->best();
   break;
   
   case 'logowanie':
@@ -44,7 +64,7 @@ switch($page){
   break;
   
    case 'rejestracjafirm':
-	if (isset($_POST['action'])){	
+	  if (isset($_POST['action'])){	
 	   $loginController ->  doPost($DataBase);
 	  }
 	  else{
