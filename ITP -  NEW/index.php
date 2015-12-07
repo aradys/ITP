@@ -23,7 +23,6 @@ switch($page){
   break;
   
   case 'galeria':
-	 $wyglad->naglowek();	
 	 $wyglad->galeria();
   break;
   
