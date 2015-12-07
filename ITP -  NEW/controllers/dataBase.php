@@ -52,5 +52,32 @@ Class DataBase{
 			 $stmt->execute(array($email,$password));			 
 			//$this ->pdo->commit();
 	}
+	// firmy
+	public function accountExistsF ($email){
+		   $stmt = $this -> pdo->prepare("SELECT count(*) as total FROM firmy where email= :email");
+			$stmt -> bindValue(':email', $email, PDO::PARAM_STR); 
+			 $stmt -> execute();
+			 $ilosc = $stmt ->fetch();
+			 
+			if ($ilosc[total] > 0 ){
+				return true;
+			}
+			else {
+				return false;
+			}		
+	}
+	
+	public function loginF($email, $password){
+		  $stmt = $this -> pdo->query('SELECT count(*) FROM firmy where email='.$email.' AND '. $password);
+	}
+	
+	public function createAccountF($nazwa, $opis, $kandydaci, $kontakt, $email, $password, ){
+		
+			// $this ->pdo->beginTransaction();
+			 $sql = "INSERT INTO firmy (nazwa,opis,kandydaci,kontakt,email,password) VALUES(?,?,?,?,?,?)";
+		     $stmt = $this ->pdo-> prepare($sql);
+			 $stmt->execute(array(,$nazwa, $opis, $kandydaci, $kontakt, $email,$password));			 
+			//$this ->pdo->commit();
+	}
 }
 ?>
