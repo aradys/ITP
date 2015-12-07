@@ -44,7 +44,13 @@ switch($page){
   break;
   
    case 'rejestracjafirm':
+	if (isset($_POST['action'])){	
 	   $loginController ->  doPost($DataBase);
+	  }
+	  else{
+			$wyglad->naglowek();	
+			$wyglad->rejestracjafirm();		
+		}
   break;
 
 	 
