@@ -10,9 +10,14 @@ $wyglad = new Widok();
 $loginController = new LoginController();
 
 $page = isset($_GET['page']) ? $_GET['page'] : 'glowna';
+
+if(isset($_SESSION['user'])){
+echo($_SESSION['user'].'siema');
+}
+
 switch($page){
  
-  case 'glowna':
+    case 'glowna':
 	$wyglad->naglowek();						
 	$wyglad->glowna();
   break;
@@ -23,6 +28,7 @@ switch($page){
   break;
   
   case 'galeria':
+	 $wyglad->naglowek();	
 	 $wyglad->galeria();
   break;
   

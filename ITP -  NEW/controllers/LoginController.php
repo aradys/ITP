@@ -25,12 +25,17 @@ Class LoginController {
 				$user = new User($email,$password);
 				
 				if(!$DataBase->accountExists($email))	{
-					
-				// zapisuje w sesji nazwe uzytkownika i flage zalogowania
+					/*// zapisuje w sesji nazwe uzytkownika i flage zalogowania
 					$_SESSION['email'] = $email;
-					$_SESSION['flag'] = true;
+					$_SESSION['flag'] = true;*/
 					
-					header("Location: index.php"); // przekierowanie na index.php	
+					if ($DataBase->login($email,$password)){
+						$_SESSION['user'] = $email;
+						header("Location: index.php"); // przekierowanie na index.php	
+					}else {
+						$_SESSION['message'] = 'niepoprawne hasło';
+						header("Location: index.php");
+					}
 				}
 				else{
 					$_SESSION['message'] = 'niepoprawne dane logowania';
@@ -47,24 +52,24 @@ Class LoginController {
 				
 					if ($password != $RepeatPassword){
 						$_SESSION['message'] = 'ahasła sie nie zgadzają';
-						header("Location: index.php?lala=1");
+						header("Location: index.php");
 					}
 					else {
 							if (!$user->validate()){
 								// trzeba dodac w klasie user przygotowanie odpowiedniej wiadomosci
 								$_SESSION['message'] = 'niepoprawne dane rejestracji';
-								header("Location: index.php?lala=2");
+								header("Location: index.php");
 							}
 							else{
 								try {
 									if (!$DataBase->accountExists($email)){
 										$DataBase->createAccount($email,$password);   
-										header("Location: index.php?lala=3"); // strona wczytana po poprawnej rejestracji
+										header("Location: index.php?"); // strona wczytana po poprawnej rejestracji
 									}
 									else {
 										$_SESSION['message'] = 'konto nie istnieje';
 										//$DataBase->createAccount($email,$password);
-										header("Location: index.php?lala=.".$DataBase->accountExists($email));// strona wczytana po nieudanej rejestracji
+										header("Location: index.php");// strona wczytana po nieudanej rejestracji
 									}
 								}
 								catch(PDOException $e){
@@ -100,7 +105,7 @@ Class LoginController {
 							}
 							else{
 								try {
-									if (!$DataBase->accountExistsF($email)){
+									if (!$DataBase->accountExists($email)){
 										$DataBase->createAccountF($nazwa, $opis, $kandydaci, $kontakt, $email, $password);   
 										header("Location: index.php"); // strona wczytana po poprawnej rejestracji
 									}

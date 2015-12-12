@@ -12,8 +12,8 @@ Class DataBase{
 		define("HOSTNAME","localhost");
 		define("DATABASE_NAME","itp");
 		define("PORT","3306");
-		define("USER_NAME","root");
-		define("PASSWORD","woj123");
+		define("USER_NAME","itp_user");
+		define("PASSWORD","ITPpasswd1");
 		
 		try
 		{
@@ -41,7 +41,19 @@ Class DataBase{
 	}
 	
 	public function login($email, $password){
-		  $stmt = $this -> pdo->query('SELECT count(*) FROM users where email='.$email.' AND '. $password);
+		 	$stmt = $this -> pdo->prepare("SELECT count(*) as total FROM users where email= :email AND password= :password");
+			$stmt -> bindValue(':email', $email, PDO::PARAM_STR); 
+			$stmt -> bindValue(':password', $password, PDO::PARAM_STR); 
+			
+			$stmt -> execute();
+			 $ilosc = $stmt ->fetch();
+			 
+			if ($ilosc[total] > 0 ){
+				return true;
+			}
+			else {
+				return false;
+			}		
 	}
 	
 	public function createAccount($email, $password){
@@ -53,6 +65,7 @@ Class DataBase{
 			 $stmt->execute(array($email,$szyfr));			 
 			//$this ->pdo->commit();
 	}
+
 	// firmy
 	public function accountExistsF ($email){
 		   $stmt = $this -> pdo->prepare("SELECT count(*) as total FROM firmy where email= :email");

@@ -1,0 +1,46 @@
+1. Pobraæ MySQL workbench ze strony: https://dev.mysql.com/downloads/file/?id=459898
+2. Wybierz SetUp New Connection
+3. Connection Name: itp
+4. Kliknij OK
+5. Wpisz w oknie Query1:
+
+create schema itp;
+
+use itp;
+
+create  table users
+(
+id int unsigned auto_increment primary key,
+firstname varchar(30),
+lastname varchar(30),
+email varchar(50) not null,
+password varchar(50),
+add_date date,
+komentarz  varchar(50)
+);
+
+
+create  table firmy
+(
+id int unsigned auto_increment primary key,
+nazwa varchar(30),
+opis varchar(300),
+kondydaci varchar(300),
+kontakt varchar(30),
+email varchar(30),
+password varchar(50),
+add_date date,
+komentarz  varchar(50)
+);
+
+
+6. Zaznacz wszystko i kliknij Execute (¿ó³ta b³yskawica)
+7.Stwórz nowego u¿ytkownika z wszystkimi uprawnieniami:
+	nazwa: itp_user
+	host: localhost
+	has³o: ITPpasswd1
+	
+
+8. Gdy zarejestruje siê firma lub u¿ytkownik, mo¿na wyœwietliæ dane w bazie w ten sposób:
+select * from users;
+select * from firmy;
