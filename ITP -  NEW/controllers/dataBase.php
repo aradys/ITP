@@ -26,18 +26,19 @@ Class DataBase{
 		}
 	}
 	
-	public function accountExists ($email){
+	public function accountExists($email){
 		   $stmt = $this -> pdo->prepare("SELECT count(*) as total FROM users where email= :email");
 			$stmt -> bindValue(':email', $email, PDO::PARAM_STR); 
 			 $stmt -> execute();
-			 $ilosc = $stmt ->fetch();
+			 $ilosc = $stmt ->fetchColumn();
 			 
-			if ($ilosc[total] > 0 ){
+			if ($ilosc > 0 ){
 				return true;
 			}
 			else {
 				return false;
-			}		
+			}
+		
 	}
 	
 	public function login($email, $password){
@@ -72,6 +73,23 @@ Class DataBase{
 		   $stmt = $this -> pdo->prepare("SELECT count(*) as total FROM firmy where email= :email");
 			$stmt -> bindValue(':email', $email, PDO::PARAM_STR); 
 			 $stmt -> execute();
+			 $ilosc = $stmt ->fetchColumn();
+			 
+			if ($ilosc > 0 ){
+				return true;
+			}
+			else {
+				return false;
+			}	
+	}
+	
+	public function loginF($email, $password){
+			$stmt = $this -> pdo->prepare("SELECT count(*) as total FROM firmy where email= :email AND password= :password");
+			$szyfr=md5("password");
+			$stmt -> bindValue(':email', $email, PDO::PARAM_STR); 
+			$stmt -> bindValue(':password', $szyfr, PDO::PARAM_STR); 
+			
+			$stmt -> execute();
 			 $ilosc = $stmt ->fetch();
 			 
 			if ($ilosc[total] > 0 ){
@@ -80,11 +98,7 @@ Class DataBase{
 			else {
 				return false;
 			}		
-	}
-	
-	public function loginF($email, $password){
-		$szyfr=md5("password");
-		  $stmt = $this -> pdo->query('SELECT count(*) FROM firmy where email='.$email.' AND password='. $szyfr);
+		
 	}
 	
 	public function createAccountF($nazwa, $opis, $kandydaci, $kontakt, $email, $password ){
