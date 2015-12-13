@@ -11,9 +11,9 @@ $loginController = new LoginController();
 
 $page = isset($_GET['page']) ? $_GET['page'] : 'glowna';
 
-if(isset($_SESSION['user'])){
+/*if(isset($_SESSION['user'])){
 echo($_SESSION['user'].'siema');
-}
+}*/
 
 switch($page){
  
@@ -83,8 +83,6 @@ switch($page){
 	die("Taka strona nie istnieje!");
 	break;
 }
-if(isset($_SESSION['message'])){
-echo($_SESSION['message']);
-}
+
 $wyglad->stopka();	
 ?>

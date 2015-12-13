@@ -18,6 +18,17 @@
       </li>
 </div>
 
+<div style="text-align: right;">
+<?php
+	session_start();
+	if(isset($_SESSION['message'])){
+		echo $_SESSION['message'];
+	}else {
+	echo '';
+	}
+?>
+</div>
+
 <div id='cssmenu'>
 <ul>
    <li><a href='index.php?page=glowna'>Główna</a></li>
@@ -43,9 +54,9 @@
    
     <a href="index.php?page=logowanie" class="button1">ZALOGUJ &nbsp</a>
 	<a href="index.php?page=rejestracja" class="button1">ZAREJESTRUJ SIĘ</a>
+	
 
 </ul>
 </div>
-
 
 
