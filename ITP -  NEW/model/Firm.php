@@ -27,7 +27,8 @@
 			if(!preg_match('/^[a-zA-Z0-9\.\-_]+\@[a-zA-Z0-9\.\-_]+\.[a-z]{2,4}$/D', $this->email)){
 				return false;
 			}
-			else if  (strlen($this->password) < 8) {
+			else
+				if  (strlen($this->password) < 8) {
 				return false;
 			}
 			

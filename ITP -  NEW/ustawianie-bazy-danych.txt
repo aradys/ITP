@@ -26,7 +26,7 @@ create  table firmy
 id int unsigned auto_increment primary key,
 nazwa varchar(30),
 opis varchar(300),
-kandydaci varchar(300),
+kondydaci varchar(300),
 kontakt varchar(30),
 email varchar(30),
 password varchar(50),

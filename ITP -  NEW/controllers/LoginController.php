@@ -23,23 +23,30 @@ Class LoginController {
 				$password = $_POST['password'];
 				
 				$user = new User($email,$password);
+				$firma = new Firm($email,$password);
 				
-				if(!$DataBase->accountExists($email))	{
-					/*// zapisuje w sesji nazwe uzytkownika i flage zalogowania
-					$_SESSION['email'] = $email;
-					$_SESSION['flag'] = true;*/
+				if($DataBase->accountExists($email))	{
 					
 					if ($DataBase->login($email,$password)){
 						$_SESSION['user'] = $email;
-						header("Location: index.php"); // przekierowanie na index.php	
+						header("Location: index.php?zalogowanystudent"); // przekierowanie na index.php	
 					}else {
 						$_SESSION['message'] = 'niepoprawne hasło';
-						header("Location: index.php");
+						header("Location: index.php?zlehaslo");
 					}
-				}
+				}else if($DataBase->accountExistsF($email))	{
+					
+					if ($DataBase->loginF($email,$password)){
+						$_SESSION['user'] = $email;
+						header("Location: index.php?zalogowanafirma"); // przekierowanie na index.php	
+					}else {
+						$_SESSION['message'] = 'niepoprawne hasło';
+						header("Location: index.php?zlehasloF");
+					}
+				}			
 				else{
 					$_SESSION['message'] = 'niepoprawne dane logowania';
-								header("Location: index.php");
+								header("Location: index.php?zledane");
 				}
 			}
 			else if ($action == 'user_registry'){ 
@@ -88,35 +95,36 @@ Class LoginController {
 				$kontakt= $_POST['contact'];
 				$email = $_POST['email'];
 				$password = $_POST['password'];
-				$RepeatPassword = $_POST['passwordRepeat'];
+				$RepeatPassword = $_POST['RepeatPassword'];
 				
 				$firm = new Firm($email,$password);
-				$dataBase = new DataBase($pdo);
+				//$dataBase = new DataBase($pdo);
 				
 					if ($password != $RepeatPassword){
 						$_SESSION['message'] = 'hasła sie nie zgadzają 1';
-						header("Location: index.php");
+						header("Location: index.php?roznehasla");
 					}
 					else {
 							if (!$firm->validate()){
 								// trzeba dodac w klasie przygotowanie odpowiedniej wiadomosci
 								$_SESSION['message'] = 'niepoprawne dane rejestracji';
-								header("Location: index.php");
+								header("Location: index.php?zledane");
 							}
 							else{
 								try {
-									if (!$DataBase->accountExists($email)){
+									if (!$DataBase->accountExistsF($email)){
 										$DataBase->createAccountF($nazwa, $opis, $kandydaci, $kontakt, $email, $password);   
-										header("Location: index.php"); // strona wczytana po poprawnej rejestracji
+										header("Location: index.php?kontoutworzone"); // strona wczytana po poprawnej rejestracji
 									}
 									else {
 										$_SESSION['message'] = 'konto nie istnieje';
-										header("Location: index.php");// strona wczytana po nieudanej rejestracji
+										header("Location: index.php?kontojuzjest");// strona wczytana po nieudanej rejestracji
 									}
 								}
 								catch(PDOException $e){
+									echo($e);
 								$_SESSION['message'] ="rejestracja nie powiodła się";
-								header("Location: index.php");// strona wczytana po nieudanej rejestracji
+								//header("Location: index.php?exception");// strona wczytana po nieudanej rejestracji
 								}								
 							}
 					}

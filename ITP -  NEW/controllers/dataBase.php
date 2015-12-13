@@ -12,8 +12,8 @@ Class DataBase{
 		define("HOSTNAME","localhost");
 		define("DATABASE_NAME","itp");
 		define("PORT","3306");
-		define("USER_NAME","itp_user");
-		define("PASSWORD","ITPpasswd1");
+		define("USER_NAME","root");
+		define("PASSWORD","");
 		
 		try
 		{
@@ -42,8 +42,9 @@ Class DataBase{
 	
 	public function login($email, $password){
 		 	$stmt = $this -> pdo->prepare("SELECT count(*) as total FROM users where email= :email AND password= :password");
+			$szyfr=md5("password");
 			$stmt -> bindValue(':email', $email, PDO::PARAM_STR); 
-			$stmt -> bindValue(':password', $password, PDO::PARAM_STR); 
+			$stmt -> bindValue(':password', $szyfr, PDO::PARAM_STR); 
 			
 			$stmt -> execute();
 			 $ilosc = $stmt ->fetch();
@@ -67,7 +68,7 @@ Class DataBase{
 	}
 
 	// firmy
-	public function accountExistsF ($email){
+	public function accountExistsF($email){
 		   $stmt = $this -> pdo->prepare("SELECT count(*) as total FROM firmy where email= :email");
 			$stmt -> bindValue(':email', $email, PDO::PARAM_STR); 
 			 $stmt -> execute();
@@ -82,7 +83,8 @@ Class DataBase{
 	}
 	
 	public function loginF($email, $password){
-		  $stmt = $this -> pdo->query('SELECT count(*) FROM firmy where email='.$email.' AND '. $password);
+		$szyfr=md5("password");
+		  $stmt = $this -> pdo->query('SELECT count(*) FROM firmy where email='.$email.' AND password='. $szyfr);
 	}
 	
 	public function createAccountF($nazwa, $opis, $kandydaci, $kontakt, $email, $password ){
