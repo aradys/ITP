@@ -35,7 +35,13 @@ komentarz  varchar(50)
 );
 
 6. Zaznacz wszystko i kliknij Execute (¿ó³ta b³yskawica)
-7. W pliku dataBase.php zmieñ odpowiednio nazwê u¿ytkownika i has³o lub za³ó¿ nowe konto z loginem i has³em takim, jak w dataBase.php
+7. Stwórz nowego u¿ytkownika z wszystkimi uprawnieniami:
+
+	nazwa: itp_user
+	
+	host: localhost
+	
+	has³o: ITPpasswd1
 8. Teraz mo¿na swobodnie przegl¹daæ stronê wpisuj¹c w przegl¹darce "localhost/ITP"
 9. Gdy zarejestruje siê firma lub u¿ytkownik, mo¿na wyœwietliæ dane w bazie wpisuj¹c i uruchamiaj¹c nastêpuj¹ce komendy:
 select * from users;
